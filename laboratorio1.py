@@ -31,16 +31,25 @@ def llenar_tablero(matriz,lista):
 
     return matriz 
 
-def mostrar_tablero(tablero):
+def mostrar_tablero(tablero,cantidad_cartas):
+    i=0
+    j=0
+    print('  ',end='')
+    while i < cantidad_cartas :
+        print(i,end=' ')
+        i+=1
+    print('')
     for row in tablero:
+        print(j,end=' ')
+        j+=1
         for col in row:
             if col==0:
-                print(' ',end='')
+                print('  ',end='')
             else:
-                print ('X', end='')
-        print('')    
+                print ('X ', end='')
+        print('')
 
-def memorice(tablero):
+def memorice(tablero,cantidad_cartas):
     suma=1
     c=1
     jugador1=0
@@ -49,9 +58,11 @@ def memorice(tablero):
     while suma>0:
         if c==1:
                 print ("Jugador 1 jugando")
+                
         else:
                 print ("Jugador 2 jugando")
-        print(mostrar_tablero(tablero))
+
+        print(mostrar_tablero(tablero,cantidad_cartas))
         suma=0
         cordenadax1=int(input("Ingrese la primera coordenada de su primera carta: ")) 
         cordenaday1=int(input("Ingrese la segunda coordenada de su primera carta: "))
@@ -60,27 +71,37 @@ def memorice(tablero):
 
         if tablero[cordenadax1][cordenaday1]==tablero[cordenadax2][cordenaday2]:
             
-            print ("nashee")
             tablero[cordenadax1][cordenaday1] = 0
             tablero[cordenadax2][cordenaday2] = 0
             print(tablero)
-            print(mostrar_tablero(tablero))
+            print(mostrar_tablero(tablero,cantidad_cartas))
+
             if c==1:
                 jugador1+=1
+                print("punto para jugador 1")
+                print('')
+
             else:
-                jugador2+=1    
+                jugador2+=1
+                print("punto para jugador 2") 
+                print('')   
         else:
             if c== 1:
                 c-=1
+            
             else:
                 c+=1
+
             print ('es el turno del otro jugador')
+
         for i in range(len(tablero)):
             for j in range(len(tablero[i])):
                     suma+=tablero[i][j]
-    print('El resultado es: ',jugador1," - ",jugador2)                        
-   
-Tablero_completo=llenar_tablero(crear_tablero(4),crear_mazo(4))
+
+    print('El resultado es: ',jugador1," - ",jugador2)
+
+Cantidad_cartas=int(input('ingrese la cantidad de cartas a jugar: '))
+Tablero_completo=llenar_tablero(crear_tablero(Cantidad_cartas),crear_mazo(Cantidad_cartas))
 print (Tablero_completo)
 #print(mostrar_tablero(Tablero_completo))
-print(memorice(Tablero_completo))
+print(memorice(Tablero_completo,Cantidad_cartas))
