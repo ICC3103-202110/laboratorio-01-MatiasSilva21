@@ -1,173 +1,200 @@
 import random
 
-def crear_tablero(tamaño):
-    matriz=[]
-    for row in range(tamaño):
-        fila=[]
-        for col in range(tamaño):
-            fila.append(0)
-        matriz.append(fila)
-    return matriz
+def create_board(card_count):
+    board=[]
+    for row in range(card_count):
+        line=[]
+        for col in range(card_count):
+            line.append(0)
+        board.append(line)
+    return board
 
-def crear_mazo(cantidad_cartas):
-    cartas=[]
-    for i in range(cantidad_cartas):
-        i+=1
-        cartas.append(i)
-        cartas.append(i)
-    random.shuffle(cartas) 
-    return cartas   
+def create_deck(card_count):
+    cards=[]
+    for card in range(card_count):
+        card+=1
+        cards.append(card)
+        cards.append(card)
+    random.shuffle(cards) 
+    return cards   
 
-def llenar_tablero(matriz,lista):
-    contador = 0
-    for fila in range(len(matriz)):
-        for columna in range(len(matriz[fila])):
-            if contador > len(lista)-1:
+def fill_board(board,cards):
+    counter = 0
+    for row in range(len(board)):
+        for col in range(len(board[row])):
+
+            if counter > len(cards)-1:
                 break
+
             else:
-                matriz[fila][columna] = lista[contador]
-                contador += 1
+                board[row][col] = cards[counter]
+                counter += 1
 
 
-    return matriz 
+    return board 
 
-def mostrar_tablero(tablero,cantidad_cartas):
-    i=0
-    j=0
+def show_board(board,card_count):
+    horizontal_cords=0
+    vert_cords=0
     print('  ',end='')
-    while i < cantidad_cartas :
-        print(i,end=' ')
-        i+=1
+
+    while horizontal_cords < card_count :
+        print(horizontal_cords,end=' ')
+        horizontal_cords+=1
     print('')
-    for row in tablero:
-        print(j,end=' ')
-        j+=1
+
+    for row in board:
+        print(vert_cords,end=' ')
+        vert_cords+=1
+
         for col in row:
             if col==0:
                 print('  ',end='')
+
             else:
                     print ('X ', end='')
+
         print('')
             
-def mostrar_tablero1(tablero,cantidad_cartas,cordx1,cordy1):
-    i=0
-    j=0
-    w=0
-    q=0
+def show_board_1(board,card_count,cordx1,cordy1):
+    horizontal_cords=0
+    vert_cords=0
+    counter_1=0
+    counter_2=0
 
     print('  ',end='')
-    while i < cantidad_cartas :
-        print(i,end=' ')
-        i+=1
+    while horizontal_cords < card_count :
+        print(horizontal_cords,end=' ')
+        horizontal_cords+=1
     print('')
-    while w<len(tablero):
-        print(j,end=' ')
-        j+=1
-        while q<len(tablero[w]):
-            if tablero[w][q]==0:
+
+    while counter_1<len(board):
+        print(vert_cords,end=' ')
+        vert_cords+=1
+
+        while counter_2<len(board[counter_1]):
+            if board[counter_1][counter_2]==0:
                 print('  ',end='')
-            elif tablero[w][q] == tablero[cordx1][cordy1]:
-                if w== cordx1 and q== cordy1:
-                 print(str(tablero[cordx1][cordy1]),end=' ')
+
+            elif board[counter_1][counter_2] == board[cordx1][cordy1]:
+                if counter_1== cordx1 and counter_2== cordy1:
+                 print(str(board[cordx1][cordy1]),end=' ')
+
                 else:     
                     print ('X ', end='')
+
             else:
                     print ('X ', end='')
-            q+=1
-        q=0
-        w+=1            
+
+            counter_2+=1
+
+        counter_2=0
+        counter_1+=1            
         print('')
 
-def mostrar_tablero2(tablero,cantidad_cartas,cordx1,cordy1,cordx2,cordy2):
-    i=0
-    j=0
-    w=0
-    q=0
+def show_board_2(board,card_count,cordx1,cordy1,cordx2,cordy2):
+    horizontal_cords=0
+    vert_cords=0
+    counter_1=0
+    counter_2=0
 
     print('  ',end='')
-    while i < cantidad_cartas :
-        print(i,end=' ')
-        i+=1
+    while horizontal_cords < card_count :
+        print(horizontal_cords,end=' ')
+        horizontal_cords+=1
     print('')
-    while w<len(tablero):
-        print(j,end=' ')
-        j+=1
-        while q<len(tablero[w]):
-            if tablero[w][q]==0:
+
+    while counter_1<len(board):
+        print(vert_cords,end=' ')
+        vert_cords+=1
+
+        while counter_2<len(board[counter_1]):
+            if board[counter_1][counter_2]==0:
                 print('  ',end='')
-            elif tablero[w][q] == tablero[cordx1][cordy1]:
-                if w== cordx1 and q== cordy1:
-                 print(str(tablero[cordx1][cordy1]),end=' ')
+
+            elif board[counter_1][counter_2] == board[cordx1][cordy1]:
+                if counter_1 == cordx1 and counter_2== cordy1:
+                 print(str(board[cordx1][cordy1]),end=' ')
+
                 else:     
                     print ('X ', end='')
-            elif tablero[w][q] == tablero[cordx2][cordy2]:
-                if w== cordx2 and q== cordy2:
-                 print(str(tablero[cordx2][cordy2]),end=' ')
+
+            elif board[counter_1][counter_2] == board[cordx2][cordy2]:
+
+                if counter_1 == cordx2 and counter_2== cordy2:
+                 print(str(board[cordx2][cordy2]),end=' ')
+
                 else:     
-                    print ('X ', end='')        
+                    print ('X ', end='')  
+
             else:
                     print ('X ', end='')
-            q+=1
-        q=0
-        w+=1            
+
+            counter_2+=1
+
+        counter_2=0
+        counter_1+=1            
         print('')
-def memorice(tablero,cantidad_cartas):
-    suma=1
-    c=1
-    jugador1=0
-    jugador2=0 
+
+def memorice(board,card_count):
+    summ=1
+    change_player=1
+    player_1=0
+    player_2=0 
     
-    while suma>0:
-        print(mostrar_tablero(tablero,cantidad_cartas))
-        if c==1:
-                print ("Jugador 1 jugando")
+    while summ>0:
+        print(show_board(board,card_count))
+        if change_player==1:
+                print ("Player 1 playing")
                 
         else:
-                print ("Jugador 2 jugando")
+                print ("Player 2 playing")
 
-        suma=0
-        cordenadax1=int(input("Ingrese la primera coordenada de su primera carta: ")) 
-        cordenaday1=int(input("Ingrese la segunda coordenada de su primera carta: "))
-        print(mostrar_tablero1(tablero,cantidad_cartas,cordenadax1,cordenaday1))
-        cordenadax2=int(input("Ingrese la primera coordenada de su segunda carta: "))
-        cordenaday2=int(input("Ingrese la segunda coordenada de su segunda carta: "))
-        print(mostrar_tablero2(tablero,cantidad_cartas,cordenadax1,cordenaday1,cordenadax2,cordenaday2))
-        if tablero[cordenadax1][cordenaday1]==tablero[cordenadax2][cordenaday2]:
+        summ=0
+        cordx1=int(input("Enter the first coordinate of your first card: ")) 
+        cordy1=int(input("Enter the second coordinate of your first card: "))
+
+        print(show_board_1(board,card_count,cordx1,cordy1)) 
+
+        cordx2=int(input("Enter the first coordinate of your second card: "))
+        cordy2=int(input("Enter the second coordinate of your second card: "))
+        
+        print(show_board_2(board,card_count,cordx1,cordy1,cordx2,cordy2))
+        if board[cordx1][cordy1]==board[cordx2][cordy2]:
             
-            tablero[cordenadax1][cordenaday1] = 0
-            tablero[cordenadax2][cordenaday2] = 0
-            print(tablero)
-            print(mostrar_tablero(tablero,cantidad_cartas))
+            board[cordx1][cordy1] = 0
+            board[cordx2][cordy2] = 0
+            
+            print(show_board(board,card_count))
 
-            if c==1:
-                jugador1+=1
-                print("punto para jugador 1")
+            if change_player==1:
+                player_1+=1
+                print("point for player 1")
                 print('')
 
             else:
-                jugador2+=1
-                print("punto para jugador 2") 
+                player_2+=1
+                print("point for player 2") 
                 print('')   
         else:
-            if c== 1:
-                c-=1
+            if change_player== 1:
+                change_player-=1
             
             else:
-                c+=1
+                change_player+=1
 
-            print ('es el turno del otro jugador')
+            print ('is the turn of the other player')
 
-        for i in range(len(tablero)):
-            for j in range(len(tablero[i])):
-                    suma+=tablero[i][j]
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                    summ+=board[i][j]
 
-    print('El resultado es: ',jugador1," - ",jugador2)
+    print('the final result: ',player_1," - ",player_2)
 
-Cantidad_cartas=int(input('ingrese la cantidad de cartas a jugar: '))
-Tablero_completo=llenar_tablero(crear_tablero(Cantidad_cartas),crear_mazo(Cantidad_cartas))
-#print (Tablero_completo)
-#print(mostrar_tablero(Tablero_completo))
+Card_count=int(input('how many cards would you like to play: '))
+full_board=fill_board(create_board(Card_count),create_deck(Card_count))
 
-#Solo falta cambiar nombre de variables a ingles y ordenar un poco el codigo
 
-print(memorice(Tablero_completo,Cantidad_cartas))
+#actualizado a ingles
+
+print(memorice(full_board,Card_count))
